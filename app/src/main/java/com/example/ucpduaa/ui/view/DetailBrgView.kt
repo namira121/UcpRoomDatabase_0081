@@ -112,6 +112,17 @@ fun BodyDetailBrg(
                 ) {
                     Text(text = "Delete")
                 }
+
+                if(deleteConfirmationRequired){
+                    DeleteConfirmationDialog(
+                        onDeleteConfirm = {
+                            deleteConfirmationRequired = false
+                            onDeleteClick()
+                        },
+                        onDeleteCancel = {deleteConfirmationRequired = false},
+                        modifier = Modifier.padding(8.dp)
+                    )
+                }
             }
         }
     }
