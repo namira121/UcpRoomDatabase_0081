@@ -1,7 +1,12 @@
 package com.example.ucpduaa.ui.customwidget
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 
 @Composable
 fun TopAppBar(
@@ -10,5 +15,12 @@ fun TopAppBar(
     judul: String,
     modifier: Modifier
 ){
+    Box(
+        modifier= Modifier
+            .fillMaxWidth()
+            .padding(16.dp),
+        contentAlignment = Alignment.Center
+    ){
 
+    }
 }
