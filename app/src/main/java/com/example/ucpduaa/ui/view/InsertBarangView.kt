@@ -162,6 +162,31 @@ fun FormBarang(
         Text(text = errorState.harga ?: "",
             color = Color.Red)
         Spacer(modifier = Modifier.height(16.dp))
+        OutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = barangEvent.stok,
+            onValueChange = {
+                onValueChange(barangEvent.copy(stok = it))
+            },
+            label = { Text("stok") },
+            isError = errorState.stok != null,
+            placeholder = { Text("Masukkan stok") }
+        )
+        Text(text = errorState.stok ?: "",
+            color = Color.Red)
+        Spacer(modifier = Modifier.height(16.dp))
+        OutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = barangEvent.namaspl,
+            onValueChange = {
+                onValueChange(barangEvent.copy(namaspl = it))
+            },
+            label = { Text("nama suplier") },
+            isError = errorState.namaspl != null,
+            placeholder = { Text("Masukkan nama suplier") }
+        )
+        Text(text = errorState.namaspl ?: "",
+            color = Color.Red)
 
     }
 }
