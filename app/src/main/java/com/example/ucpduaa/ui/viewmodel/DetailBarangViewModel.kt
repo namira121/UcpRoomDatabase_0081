@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 
 fun Barang.toDetailEvent(): BarangEvent{
     return BarangEvent(
@@ -67,4 +68,11 @@ class DetailBarangViewModel (
                 isLoading = true,
             )
         )
+    fun deleteBrg(){
+        detailbrgUIState.value.detailUiEvent.toBarangEntity().let {
+            viewModelScope.launch {
+                repositoryBarang.deleteBarang(it)
+            }
+        }
+    }
 }
