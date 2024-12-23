@@ -1,6 +1,7 @@
 package com.example.ucpduaa.ui.viewmodel
 
 import com.example.ucpduaa.data.entity.Barang
+import java.text.Normalizer.Form
 
 data class BarangEvent(
     val id: Int,
@@ -33,5 +34,11 @@ data class FormErrorState(
                 harga == null && stok == null && namaspl == null
     }
 }
+
+data class BrgUIState(
+    val barangEvent: BarangEvent = BarangEvent(),
+    val isEntryValid: FormErrorState = FormErrorState(),
+    val snackBarMessage:String?= null,
+)
 
 
