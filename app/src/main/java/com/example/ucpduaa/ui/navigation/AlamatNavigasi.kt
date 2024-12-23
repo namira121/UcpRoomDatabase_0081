@@ -7,3 +7,7 @@ interface AlamatNavigasi{
 object DestinasiHome : AlamatNavigasi{
     override val route = "home"
 }
+
+object DestinasiBarang :AlamatNavigasi{
+    override val route = "daftarbarang"
+}
