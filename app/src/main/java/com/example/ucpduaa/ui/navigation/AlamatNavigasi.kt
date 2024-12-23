@@ -23,3 +23,7 @@ object DestinasiUpdateBarang : AlamatNavigasi{
     const val ID = "id"
     val routesWithArg = "$route/{$ID}"
 }
+
+object DestinasiSuplier :AlamatNavigasi{
+    override val route = "daftarsuplier"
+}
