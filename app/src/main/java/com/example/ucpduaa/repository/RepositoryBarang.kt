@@ -11,4 +11,6 @@ interface RepositoryBarang {
     fun getBarang(id: String): Flow<Barang>
 
     suspend fun deleteBarang(barang: Barang)
+
+    suspend fun updateBarang(barang: Barang)
 }
