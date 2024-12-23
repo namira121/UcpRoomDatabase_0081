@@ -1,10 +1,47 @@
 package com.example.ucpduaa.ui.view
 
 import android.app.AlertDialog
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.ucpduaa.ui.customwidget.TopAppBar
+import com.example.ucpduaa.ui.viewmodel.DetailBarangViewModel
+import com.example.ucpduaa.ui.viewmodel.PenyediaViewModel
+
+@Composable
+fun DetailBrgView(
+    modifier: Modifier = Modifier,
+    viewModel: DetailBarangViewModel = viewModel(factory = PenyediaViewModel.Factory),
+    onBack: () -> Unit = { },
+    onEditClick: (Int) -> Unit = { },
+    onDeleteClick: () -> Unit = { }
+){
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                judul = "Detail Barang",
+                showBackButton = true,
+                onBack = onBack,
+                modifier = modifier
+            )
+        },
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = {
+                    onEditClick(viewModel.detailbrgUIState.value.detailUiEvent.id) },
+                shape = MaterialTheme.shapes.medium,
+                modifier = Modifier.padding(16.dp)
+            ) { }
+        }
+    ) {  }
+}
 
 @Composable
 private fun DeleteConfirmationDialog(
