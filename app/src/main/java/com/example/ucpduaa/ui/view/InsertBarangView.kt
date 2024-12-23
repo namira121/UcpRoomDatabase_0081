@@ -16,6 +16,8 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.ucpduaa.ui.customwidget.TopAppBar
 import com.example.ucpduaa.ui.navigation.AlamatNavigasi
+import com.example.ucpduaa.ui.viewmodel.BarangEvent
+import com.example.ucpduaa.ui.viewmodel.BrgUIState
 import com.example.ucpduaa.ui.viewmodel.InsertBarangViewModel
 import com.example.ucpduaa.ui.viewmodel.PenyediaViewModel
 import kotlinx.coroutines.launch
@@ -60,6 +62,26 @@ fun InsertBarangView(
                 judul = "Tambah Barang",
                 modifier = modifier
             )
+            InsertBodyBrg(
+                uiState=uiState,
+                onValueChange = {updatedEvent ->
+                    viewModel.updateState(updatedEvent)
+                },
+                onClick = {
+                    viewModel.saveData()
+                    onNavigate
+                }
+            )
         }
     }
+}
+
+@Composable
+fun InsertBodyBrg(
+    modifier: Modifier = Modifier,
+    onValueChange: (BarangEvent) -> Unit,
+    uiState: BrgUIState,
+    onClick: () -> Unit
+){
+    Column() {  }
 }
