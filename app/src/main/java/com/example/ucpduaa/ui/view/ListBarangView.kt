@@ -144,7 +144,14 @@ fun BodyListBarangView(
 
         else -> {
             ListBarang(
-                listBrg = listbrgUIState.li
+                listBrg = listbrgUIState.listBrg,
+                onClick = {
+                    onClick(it)
+                    println(
+                        it
+                    )
+                },
+                modifier = modifier
             )
         }
     }
