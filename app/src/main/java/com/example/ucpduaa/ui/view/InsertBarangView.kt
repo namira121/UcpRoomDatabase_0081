@@ -1,16 +1,21 @@
 package com.example.ucpduaa.ui.view
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.traceEventEnd
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -18,6 +23,7 @@ import com.example.ucpduaa.ui.customwidget.TopAppBar
 import com.example.ucpduaa.ui.navigation.AlamatNavigasi
 import com.example.ucpduaa.ui.viewmodel.BarangEvent
 import com.example.ucpduaa.ui.viewmodel.BrgUIState
+import com.example.ucpduaa.ui.viewmodel.FormErrorState
 import com.example.ucpduaa.ui.viewmodel.InsertBarangViewModel
 import com.example.ucpduaa.ui.viewmodel.PenyediaViewModel
 import kotlinx.coroutines.launch
@@ -82,6 +88,33 @@ fun InsertBodyBrg(
     onValueChange: (BarangEvent) -> Unit,
     uiState: BrgUIState,
     onClick: () -> Unit
+) {
+    Column(
+        modifier = Modifier.fillMaxWidth(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        FormBarang(
+            barangEvent = uiState.barangEvent,
+            onValueChange = onValueChange,
+            errorState = uiState.isEntryValid,
+            modifier = Modifier.fillMaxWidth()
+        )
+        Button(
+            onClick = onClick,
+            modifier= Modifier.fillMaxWidth(),
+        ) {
+            Text("Simpan")
+        }
+    }
+}
+
+@Composable
+fun FormBarang(
+    barangEvent: BarangEvent =BarangEvent(),
+    onValueChange: (BarangEvent) -> Unit = {},
+    errorState: FormErrorState = FormErrorState(),
+    modifier: Modifier = Modifier
 ){
-    Column() {  }
+
 }
