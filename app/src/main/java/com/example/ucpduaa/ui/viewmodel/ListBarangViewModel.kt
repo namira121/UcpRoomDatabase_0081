@@ -1,6 +1,11 @@
 package com.example.ucpduaa.ui.viewmodel
 
+import androidx.lifecycle.ViewModel
 import com.example.ucpduaa.data.entity.Barang
+import com.example.ucpduaa.repository.RepositoryBarang
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.map
 
 data class ListBrgUIState(
     val listBrg: List<Barang> = listOf(),
@@ -8,3 +13,16 @@ data class ListBrgUIState(
     val isError: Boolean = false,
     val errorMessage: String = ""
 )
+
+class ListBarangViewModel(
+    private  val repositoryBarang: RepositoryBarang
+):ViewModel(){
+    val listbrgUIState: StateFlow<ListBrgUIState> = repositoryBarang.getAllBarang()
+        .filterNotNull()
+        .map {
+            ListBrgUIState(
+                listBrg = it.toList(),
+                isLoading = false
+            )
+        }
+}
