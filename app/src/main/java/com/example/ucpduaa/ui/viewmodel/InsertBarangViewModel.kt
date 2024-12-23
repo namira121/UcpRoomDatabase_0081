@@ -4,12 +4,15 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.ucpduaa.data.entity.Barang
 import com.example.ucpduaa.repository.RepositoryBarang
+import kotlinx.coroutines.launch
 import java.text.Normalizer.Form
 
 data class BarangEvent(
-    val id: Int,
+    val id: Int = 0,
     val nama: String = "",
     val deskripsi: String = "",
     val harga: String = "",
@@ -67,6 +70,34 @@ class InsertBarangViewModel(private val repositoryBarang: RepositoryBarang) : Vi
         )
         uiState = uiState.copy(isEntryValid = errorState)
         return errorState.isValid()
+    }
+
+    fun saveData(){
+        val currentEvent = uiState.barangEvent
+
+        if(validateFields()){
+            viewModelScope.launch {
+                try{
+                    repositoryBarang.insertbarang(currentEvent.toBarangEntity())
+                    uiState = uiState.copy(
+                        snackBarMessage = "Data berhasil disimpan",
+                        barangEvent = BarangEvent(),
+                        isEntryValid = FormErrorState()
+                    )
+                }catch (e: Exception){
+                    uiState = uiState.copy(
+                        snackBarMessage = "Data gagal disimpan"
+                    )
+                }
+            }
+        }else{
+            uiState = uiState.copy(
+                snackBarMessage = "Input Tidak Valid"
+            )
+        }
+    }
+    fun resetSnackBarMessage(){
+        uiState = uiState.copy(snackBarMessage = null)
     }
 }
 
