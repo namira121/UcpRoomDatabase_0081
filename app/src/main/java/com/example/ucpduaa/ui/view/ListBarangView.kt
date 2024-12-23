@@ -16,11 +16,14 @@ import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -28,8 +31,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.ucpduaa.data.entity.Barang
+import com.example.ucpduaa.ui.customwidget.TopAppBar
+import com.example.ucpduaa.ui.viewmodel.ListBarangViewModel
 import com.example.ucpduaa.ui.viewmodel.ListBrgUIState
+import com.example.ucpduaa.ui.viewmodel.PenyediaViewModel
 import kotlinx.coroutines.launch
 
 @Composable
@@ -154,6 +161,35 @@ fun BodyListBarangView(
                 modifier = modifier
             )
         }
+    }
+}
+
+@Composable
+fun ListBarangView(
+    viewModel: ListBarangViewModel = viewModel(factory = PenyediaViewModel.Factory),
+    onDetailClick: (Int) -> Unit = { },
+    onBack: () ->Unit = { },
+    modifier: Modifier=Modifier
+){
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                judul = "Daftar Barang",
+                showBackButton = true,
+                onBack = onBack,
+                modifier = modifier
+            )
+        }
+    ) {innerPadding ->
+        val listbrgUIState by viewModel.listbrgUIState.collectAsState()
+
+        BodyListBarangView(
+            listbrgUIState = listbrgUIState,
+            onClick = {
+                onDetailClick(it)
+            },
+            modifier = Modifier.padding(innerPadding)
+        )
     }
 }
 
