@@ -2,10 +2,14 @@ package com.example.ucpduaa.ui.view
 
 import android.app.AlertDialog
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -27,6 +31,7 @@ import com.example.ucpduaa.ui.customwidget.TopAppBar
 import com.example.ucpduaa.ui.viewmodel.DetailBarangViewModel
 import com.example.ucpduaa.ui.viewmodel.DetailBrgUIState
 import com.example.ucpduaa.ui.viewmodel.PenyediaViewModel
+import com.example.ucpduaa.ui.viewmodel.toBarangEntity
 
 @Composable
 fun DetailBrgView(
@@ -85,6 +90,28 @@ fun BodyDetailBrg(
                 contentAlignment = Alignment.Center
             ){
                 CircularProgressIndicator()
+            }
+        }
+
+        detailBrgUIState.isUiEventNotEmpty -> {
+            Column(
+                modifier = modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            ) {
+                ItemDetailBrg(
+                    barang = detailBrgUIState.detailUiEvent.toBarangEntity(),
+                    modifier= Modifier
+                )
+                Spacer(modifier = Modifier.padding(8.dp))
+                Button(
+                    onClick = {
+                        deleteConfirmationRequired = true
+                    },
+                    modifier=Modifier.fillMaxWidth()
+                ) {
+                    Text(text = "Delete")
+                }
             }
         }
     }
