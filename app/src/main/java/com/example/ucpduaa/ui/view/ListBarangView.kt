@@ -128,6 +128,25 @@ fun BodyListBarangView(
                 }
             }
         }
+        listbrgUIState.listBrg.isEmpty() -> {
+            Box(
+                modifier= modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ){
+                Text(text = "Tidak ada data mahasiswa",
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(16.dp)
+                )
+
+            }
+        }
+
+        else -> {
+            ListBarang(
+                listBrg = listbrgUIState.li
+            )
+        }
     }
 }
 
