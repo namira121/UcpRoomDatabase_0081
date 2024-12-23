@@ -12,3 +12,16 @@ fun Barang.toDetailEvent(): BarangEvent{
         namaspl = namaspl
     )
 }
+
+data class DetailBrgUIState(
+    val detailUiEvent: BarangEvent = BarangEvent(),
+    val isLoading: Boolean = false,
+    val isError: Boolean = false,
+    val errorMessage: String = ""
+){
+    val isUiEventEmpty: Boolean
+        get() = detailUiEvent == BarangEvent()
+
+    val isUiEventNotEmpty: Boolean
+        get() = detailUiEvent != BarangEvent()
+}
