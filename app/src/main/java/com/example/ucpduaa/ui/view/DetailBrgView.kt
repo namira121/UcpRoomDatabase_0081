@@ -1,6 +1,5 @@
 package com.example.ucpduaa.ui.view
 
-import android.app.AlertDialog
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -9,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -158,7 +158,16 @@ fun ItemDetailBrg(
         Column(
             modifier = Modifier.padding(16.dp)
         ){
-            ComponentDetailBrg(judul = "Nama",)
+            ComponentDetailBrg(judul = "Nama", isinya = barang.nama)
+            Spacer(modifier= Modifier.padding(4.dp))
+            ComponentDetailBrg(judul = "Deskripsi", isinya = barang.deskripsi)
+            Spacer(modifier= Modifier.padding(4.dp))
+            ComponentDetailBrg(judul = "Harga", isinya = barang.harga)
+            Spacer(modifier= Modifier.padding(4.dp))
+            ComponentDetailBrg(judul = "Stok", isinya = barang.stok)
+            Spacer(modifier= Modifier.padding(4.dp))
+            ComponentDetailBrg(judul = "Nama Suplier", isinya = barang.namaspl)
+            Spacer(modifier= Modifier.padding(4.dp))
         }
     }
 }
@@ -203,5 +212,5 @@ private fun DeleteConfirmationDialog(
                 Text(text = "Yes")
             }
         }
-        )
+    )
 }
