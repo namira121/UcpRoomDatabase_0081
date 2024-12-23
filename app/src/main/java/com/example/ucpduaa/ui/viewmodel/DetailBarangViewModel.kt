@@ -6,7 +6,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.ucpduaa.data.entity.Barang
 import com.example.ucpduaa.repository.RepositoryBarang
 import com.example.ucpduaa.ui.navigation.DestinasiDetailBarang
-import com.example.ucpduaa.ui.navigation.DestinasiUpdateBarang
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
@@ -44,7 +43,6 @@ class DetailBarangViewModel (
     private val repositoryBarang: RepositoryBarang,
 ): ViewModel(){
     private val _id: Int = checkNotNull(savedStateHandle[DestinasiDetailBarang.ID])
-
 
     val detailbrgUIState: StateFlow<DetailBrgUIState> = repositoryBarang.getBarang(_id)
         .filterNotNull()
