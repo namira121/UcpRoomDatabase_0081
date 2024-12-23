@@ -2,6 +2,7 @@ package com.example.ucpduaa.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
@@ -17,6 +18,20 @@ object PenyediaViewModel{
 
         initializer {
             InsertBarangViewModel(
+                TokoApp().ContainerApp.repositoryBarang
+            )
+        }
+
+        initializer {
+            DetailBarangViewModel(
+                createSavedStateHandle(),
+                TokoApp().ContainerApp.repositoryBarang
+            )
+        }
+
+        initializer {
+            UpdateBarangViewModel(
+                createSavedStateHandle(),
                 TokoApp().ContainerApp.repositoryBarang
             )
         }
