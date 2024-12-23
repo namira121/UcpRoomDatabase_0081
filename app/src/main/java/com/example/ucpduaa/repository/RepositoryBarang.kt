@@ -9,4 +9,6 @@ interface RepositoryBarang {
     fun getAllBarang(): Flow<List<Barang>>
 
     fun getBarang(id: String): Flow<Barang>
+
+    suspend fun deleteBarang(barang: Barang)
 }
