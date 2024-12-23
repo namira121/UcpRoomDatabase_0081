@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.ucpduaa.ui.customwidget.TopAppBar
 import com.example.ucpduaa.ui.viewmodel.DetailBarangViewModel
+import com.example.ucpduaa.ui.viewmodel.DetailBrgUIState
 import com.example.ucpduaa.ui.viewmodel.PenyediaViewModel
 
 @Composable
@@ -62,6 +63,13 @@ fun DetailBrgView(
         )
     }
 }
+
+@Composable
+fun BodyDetailBrg(
+    modifier: Modifier = Modifier,
+    detailBrgUIState: DetailBrgUIState = DetailBrgUIState(),
+    onDeleteClick: () -> Unit = { }
+){}
 
 @Composable
 private fun DeleteConfirmationDialog(
