@@ -2,6 +2,7 @@ package com.example.ucpduaa.ui.view
 
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
@@ -9,6 +10,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.ucpduaa.ui.navigation.AlamatNavigasi
 import com.example.ucpduaa.ui.viewmodel.InsertBarangViewModel
 import com.example.ucpduaa.ui.viewmodel.PenyediaViewModel
+import kotlinx.coroutines.launch
 
 object DestinasiInsertBrg : AlamatNavigasi{
     override val route: String = "insertbarang"
@@ -24,4 +26,13 @@ fun InsertBarangView(
     val uiState = viewModel.uiState
     val snackbarHostState = remember { SnackbarHostState() }
     val coroutlineScope = rememberCoroutineScope()
+
+    LaunchedEffect(uiState.snackBarMessage) {
+        uiState.snackBarMessage?.let { message ->
+            coroutlineScope.launch {
+                snackbarHostState.showSnackbar(message)
+                viewModel.resetSnackBarMessage()
+            }
+        }
+    }
 }
