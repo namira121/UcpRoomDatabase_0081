@@ -20,6 +20,7 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -29,6 +30,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.ucpduaa.data.entity.Barang
 import com.example.ucpduaa.ui.viewmodel.ListBrgUIState
+import kotlinx.coroutines.launch
 
 @Composable
 fun CardBarang(
@@ -115,6 +117,15 @@ fun BodyListBarangView(
                 contentAlignment = Alignment.Center
             ){
                 CircularProgressIndicator()
+            }
+        }
+        listbrgUIState.isError ->{
+            LaunchedEffect(listbrgUIState.errorMessage) {
+                listbrgUIState.errorMessage?.let {message ->
+                    coroutineScope.launch {
+                        snackbarHostState.showSnackbar(message)
+                    }
+                }
             }
         }
     }
