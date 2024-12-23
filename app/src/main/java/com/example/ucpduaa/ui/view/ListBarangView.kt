@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.ShoppingCart
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -54,6 +55,17 @@ fun CardBarang(
                     fontSize = 20.sp
                 )
             }
+            Row(modifier=Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically) {
+                Icon(imageVector = Icons.Filled.Star, contentDescription = "")
+                Spacer(modifier = Modifier.padding(4.dp))
+                Text(
+                    text = brg.stok,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 20.sp
+                )
+            }
         }
     }
 }
+
