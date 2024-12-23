@@ -1,7 +1,11 @@
 package com.example.ucpduaa.ui.viewmodel
 
-import com.example.ucpduaa.data.entity.Barang
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.lifecycle.ViewModel
 import com.example.ucpduaa.data.entity.Suplier
+import com.example.ucpduaa.repository.RepositorySuplier
 
 data class SuplierEvent(
     val idspl: Int = 0,
@@ -30,7 +34,28 @@ data class FormErrorStateSpl(
 }
 
 data class SplUIState(
-    val barangEvent: BarangEvent = BarangEvent(),
-    val isEntryValid: FormErrorState = FormErrorState(),
+    val suplierEvent: SuplierEvent = SuplierEvent(),
+    val isEntryValid: FormErrorStateSpl = FormErrorStateSpl(),
     val snackBarMessage: String? = null,
 )
+
+class InsertSuplierViewModel(private val repositorySuplier: RepositorySuplier): ViewModel(){
+    var SuplieruiState by mutableStateOf(SplUIState())
+
+    fun updateSplState(SuplierEvent: SuplierEvent){
+        SuplieruiState = SuplieruiState.copy(
+            suplierEvent = SuplierEvent,
+        )
+    }
+
+    private fun validateFieldsSpl(): Boolean{
+        val event = SuplieruiState.suplierEvent
+        val errorState = FormErrorStateSpl(
+            namaspl = if (event.namaspl.isNotEmpty()) null else "Nama tidak boleh kosong",
+            kontakspl = if (event.kontakspl.isNotEmpty()) null else "Kontak tidak boleh kosong",
+            alamatspl  = if (event.alamatspl.isNotEmpty()) null else "Alamat tidak boleh kosong"
+        )
+        SuplieruiState = SuplieruiState.copy(isEntryValid = errorState)
+        return errorState.isValid()
+    }
+}
