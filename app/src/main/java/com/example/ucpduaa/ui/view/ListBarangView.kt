@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
@@ -39,6 +40,16 @@ fun CardBarang(
                 Spacer(modifier = Modifier.padding(4.dp))
                 Text(
                     text = brg.nama,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 20.sp
+                )
+            }
+            Row(modifier=Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically) {
+                Icon(imageVector = Icons.Filled.Info, contentDescription = "")
+                Spacer(modifier = Modifier.padding(4.dp))
+                Text(
+                    text = brg.deskripsi,
                     fontWeight = FontWeight.Bold,
                     fontSize = 20.sp
                 )
