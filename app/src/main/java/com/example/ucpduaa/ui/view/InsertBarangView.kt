@@ -2,8 +2,10 @@ package com.example.ucpduaa.ui.view
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
@@ -133,5 +135,33 @@ fun FormBarang(
         )
         Text(text = errorState.nama ?: "",
             color = Color.Red)
+        Spacer(modifier = Modifier.height(16.dp))
+        OutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = barangEvent.deskripsi,
+            onValueChange = {
+                onValueChange(barangEvent.copy(deskripsi = it))
+            },
+            label = { Text("deskripsi") },
+            isError = errorState.deskripsi != null,
+            placeholder = { Text("Masukkan deskripsi") }
+        )
+        Text(text = errorState.deskripsi ?: "",
+            color = Color.Red)
+        Spacer(modifier = Modifier.height(16.dp))
+        OutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = barangEvent.harga,
+            onValueChange = {
+                onValueChange(barangEvent.copy(harga = it))
+            },
+            label = { Text("harga") },
+            isError = errorState.harga != null,
+            placeholder = { Text("Masukkan harga") }
+        )
+        Text(text = errorState.harga ?: "",
+            color = Color.Red)
+        Spacer(modifier = Modifier.height(16.dp))
+
     }
 }
