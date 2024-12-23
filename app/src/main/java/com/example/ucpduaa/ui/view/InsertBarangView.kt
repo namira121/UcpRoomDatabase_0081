@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -17,6 +18,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.traceEventEnd
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.ucpduaa.ui.customwidget.TopAppBar
@@ -116,5 +118,20 @@ fun FormBarang(
     errorState: FormErrorState = FormErrorState(),
     modifier: Modifier = Modifier
 ){
-
+    Column(
+        modifier = modifier.fillMaxWidth()
+    ) {
+        OutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = barangEvent.nama,
+            onValueChange = {
+                onValueChange(barangEvent.copy(nama = it))
+            },
+            label = { Text("nama") },
+            isError = errorState.nama != null,
+            placeholder = { Text("Masukkan nama") }
+        )
+        Text(text = errorState.nama ?: "",
+            color = Color.Red)
+    }
 }
