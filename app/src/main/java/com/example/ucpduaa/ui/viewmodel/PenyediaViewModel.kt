@@ -15,10 +15,21 @@ object PenyediaViewModel{
                 TokoApp().ContainerApp.repositoryBarang
             )
         }
+        initializer {
+            ListSuplierViewModel(
+                TokoApp().ContainerApp.repositorySuplier
+            )
+        }
 
         initializer {
             InsertBarangViewModel(
                 TokoApp().ContainerApp.repositoryBarang
+            )
+        }
+
+        initializer {
+            InsertSuplierViewModel(
+                TokoApp().ContainerApp.repositorySuplier
             )
         }
 
