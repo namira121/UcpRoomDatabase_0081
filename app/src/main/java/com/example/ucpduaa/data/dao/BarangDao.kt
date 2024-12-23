@@ -1,6 +1,7 @@
 package com.example.ucpduaa.data.dao
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import com.example.ucpduaa.data.entity.Barang
@@ -18,4 +19,7 @@ interface BarangDao {
 
     @Query("SELECT* FROM barang WHERE id = :id")
     fun getBarang(id:String): Flow<Barang>
+
+    @Delete
+    suspend fun deleteBarang(barang: Barang)
 }
