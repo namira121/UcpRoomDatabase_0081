@@ -14,6 +14,12 @@ object PenyediaViewModel{
                 TokoApp().ContainerApp.repositoryBarang
             )
         }
+
+        initializer {
+            InsertBarangViewModel(
+                TokoApp().ContainerApp.repositoryBarang
+            )
+        }
     }
 }
 
