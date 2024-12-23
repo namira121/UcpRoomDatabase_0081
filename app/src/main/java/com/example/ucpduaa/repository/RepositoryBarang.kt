@@ -7,4 +7,6 @@ interface RepositoryBarang {
     suspend fun insertbarang(barang: Barang)
 
     fun getAllBarang(): Flow<List<Barang>>
+
+    fun getBarang(id: String): Flow<Barang>
 }
