@@ -18,4 +18,8 @@ class LocalRepositoryBarang(
     override fun getBarang(id: String): Flow<Barang> {
         return barangDao.getBarang(id)
     }
+
+    override suspend fun deleteBarang(barang: Barang) {
+        barangDao.deleteBarang(barang)
+    }
 }
