@@ -9,6 +9,9 @@ import androidx.navigation.compose.rememberNavController
 import com.example.ucpduaa.ui.view.DestinasiInsertBrg
 import com.example.ucpduaa.ui.view.DestinasiInsertSpl
 import com.example.ucpduaa.ui.view.HomeView
+import com.example.ucpduaa.ui.view.InsertBarangView
+import com.example.ucpduaa.ui.view.InsertSuplierView
+import com.example.ucpduaa.ui.view.ListBarangView
 
 @Composable
 fun PengelolaHalaman(
@@ -33,6 +36,43 @@ fun PengelolaHalaman(
                 },
                 onListSuplier = {
                     navController.navigate(DestinasiSuplier.route)
+                },
+                modifier = modifier
+            )
+        }
+        composable(
+            route = DestinasiInsertBrg.route
+        ){
+            InsertBarangView(
+                onBack = {
+                    navController.popBackStack()
+                },
+                onNavigate = {
+                    navController.popBackStack()
+                },
+                modifier = modifier,
+            )
+        }
+        composable(
+            route = DestinasiInsertSpl.route
+        ){
+            InsertSuplierView(
+                onBack = {
+                    navController.popBackStack()
+                },
+                onNavigate = {navController.popBackStack()},
+                modifier = modifier,
+            )
+        }
+        composable(
+            route = DestinasiBarang.route
+        ){
+            ListBarangView(
+                onDetailClick = {id ->
+                    navController.navigate("${DestinasiDetailBarang.route}/$id")
+                    println(
+                        "PengelolaHalaman : id = $id"
+                    )
                 }
             )
         }
