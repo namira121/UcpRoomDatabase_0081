@@ -15,14 +15,19 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.traceEventEnd
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.ucpduaa.data.ListNamaSpl
+import com.example.ucpduaa.ui.customwidget.DropDownSpl
 import com.example.ucpduaa.ui.customwidget.TopAppBar
 import com.example.ucpduaa.ui.navigation.AlamatNavigasi
 import com.example.ucpduaa.ui.viewmodel.BarangEvent
@@ -31,6 +36,7 @@ import com.example.ucpduaa.ui.viewmodel.FormErrorState
 import com.example.ucpduaa.ui.viewmodel.InsertBarangViewModel
 import com.example.ucpduaa.ui.viewmodel.PenyediaViewModel
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.selects.select
 
 object DestinasiInsertBrg : AlamatNavigasi{
     override val route: String = "insertbarang"
@@ -120,6 +126,7 @@ fun FormBarang(
     errorState: FormErrorState = FormErrorState(),
     modifier: Modifier = Modifier
 ){
+    var NamaSpl by remember{ mutableStateOf("") }
     Column(
         modifier = modifier.fillMaxWidth()
     ) {
@@ -175,18 +182,21 @@ fun FormBarang(
         Text(text = errorState.stok ?: "",
             color = Color.Red)
         Spacer(modifier = Modifier.height(16.dp))
-        OutlinedTextField(
-            modifier = Modifier.fillMaxWidth(),
-            value = barangEvent.namaspl,
-            onValueChange = {
-                onValueChange(barangEvent.copy(namaspl = it))
-            },
-            label = { Text("nama suplier") },
-            isError = errorState.namaspl != null,
-            placeholder = { Text("Masukkan nama suplier") }
+        DropDownSpl(
+            selectedValue = NamaSpl,
+            options = ListNamaSpl.DataNamaSpl(),
+            label = "Nama Suplier",
+            onValueChangedEvent = { selected ->
+                NamaSpl = selected
+                onValueChange(barangEvent.copy(namaspl = selected))
+            }
         )
-        Text(text = errorState.namaspl ?: "",
-            color = Color.Red)
+        Text(
+            text = errorState.namaspl ?: "",
+            color = Color.Red
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+
 
     }
 }
