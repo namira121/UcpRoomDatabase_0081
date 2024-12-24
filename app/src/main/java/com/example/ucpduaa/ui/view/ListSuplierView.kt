@@ -170,7 +170,6 @@ fun BodyListSuplierView(
 @Composable
 fun ListSuplierView(
     viewModel: ListSuplierViewModel = viewModel(factory = PenyediaViewModel.Factory),
-    onDetailClick: (Int) -> Unit = { },
     onBack: () ->Unit = { },
     modifier: Modifier=Modifier
 ){
@@ -188,9 +187,7 @@ fun ListSuplierView(
 
         BodyListSuplierView(
             listsplUIState = listSplUIState,
-            onClick = {
-                onDetailClick(it)
-            },
+
             modifier = Modifier.padding(innerPadding)
         )
     }
