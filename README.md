@@ -1,3 +1,4 @@
+link video: https://umyac-my.sharepoint.com/:v:/g/personal/namira_anjani_ft22_mail_umy_ac_id/Eaac3dky09JLnlSTbb2BqiwBW2gZ3OGJojt6cuj0f0CdUQ
 ![daftar barang](https://github.com/user-attachments/assets/3cc380f9-53a2-4d6e-aede-e1ca39f3370e)
 ![daftar suplier](https://github.com/user-attachments/assets/3efa4fb6-4ac0-400d-8906-a1c8747f2f9f)
 ![delete barang](https://github.com/user-attachments/assets/9d5a6359-551a-45b9-92a9-2ff9a98a1965)
