@@ -142,7 +142,7 @@ fun BodyListSuplierView(
                 modifier= modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center
             ){
-                Text(text = "Tidak ada data mahasiswa",
+                Text(text = "Tidak ada data suplier",
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.padding(16.dp)

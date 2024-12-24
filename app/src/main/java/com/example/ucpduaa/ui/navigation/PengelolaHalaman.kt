@@ -42,7 +42,7 @@ fun PengelolaHalaman(
                 onListSuplier = {
                     navController.navigate(DestinasiSuplier.route)
                 },
-                modifier = modifier
+                modifier = modifier,
             )
         }
         composable(
@@ -55,6 +55,7 @@ fun PengelolaHalaman(
                 onNavigate = {
                     navController.popBackStack()
                 },
+
                 modifier = modifier,
             )
         }
@@ -65,7 +66,9 @@ fun PengelolaHalaman(
                 onBack = {
                     navController.popBackStack()
                 },
-                onNavigate = {navController.popBackStack()},
+                onNavigate = {
+                    navController.popBackStack()
+                },
                 modifier = modifier,
             )
         }
