@@ -4,8 +4,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.ucpduaa.data.entity.Suplier
 import com.example.ucpduaa.repository.RepositorySuplier
+import kotlinx.coroutines.launch
 
 data class SuplierEvent(
     val idspl: Int = 0,
@@ -57,5 +59,33 @@ class InsertSuplierViewModel(private val repositorySuplier: RepositorySuplier): 
         )
         SuplieruiState = SuplieruiState.copy(isEntryValid = errorState)
         return errorState.isValid()
+    }
+
+    fun saveDataSpl(){
+        val currentEvent = SuplieruiState.suplierEvent
+
+        if(validateFieldsSpl()){
+            viewModelScope.launch {
+                try{
+                    repositorySuplier.insertsuplier(currentEvent.toSuplierEntity())
+                    SuplieruiState = SuplieruiState.copy(
+                        snackBarMessage = "Data berhasil disimpan",
+                        suplierEvent = SuplierEvent(),
+                        isEntryValid = FormErrorStateSpl()
+                    )
+                }catch (e: Exception){
+                    SuplieruiState = SuplieruiState.copy(
+                        snackBarMessage = "Data gagal disimpan"
+                    )
+                }
+            }
+        }else{
+            SuplieruiState = SuplieruiState.copy(
+                snackBarMessage = "Input Tidak Valid"
+            )
+        }
+    }
+    fun resetSnackBarMessage(){
+        SuplieruiState = SuplieruiState.copy(snackBarMessage = null)
     }
 }
